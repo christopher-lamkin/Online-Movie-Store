@@ -1,5 +1,7 @@
-require 'csv'
+require 'Faker'
 
-CSV.foreach(Rails.root.join("db/seeds_data/movies.csv"), headers: true) do |row|
-    Movie.find_or_create_by(title: row[0], release_year: row[1], price: row[2], description: row[3], idmb_id: row[4], poster_url: row[5])
+def range(min, max)
+  rand * (max-min) + min
 end
+
+Movie.create(title: Faker::Commerce.product_name, release_year: 2014, price: range(25.45, 45.64), description: "They are all good movies", imdb_id: "KDFSF", poster_url: "ASDFAS" )
